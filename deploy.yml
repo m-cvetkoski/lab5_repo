@@ -1,0 +1,26 @@
+---
+- name: Pull Docker Image from Docker Hub
+  hosts: martin
+  become: true
+
+  tasks:
+    - name: Log in to Docker Hub
+      docker_login:
+        username: "cvetkoskimartin"
+        password: "dckr_pat_9yOqSg2Pak5oNlewXj5Aeetf-5o"
+        registry_url: https://index.docker.io/v1/
+
+    - name: Pull Docker Image
+      docker_image:
+        name: "cvetkoskimartin/dev_ops:latest"
+        source: pull
+
+    - name: Container run with env Variable
+      docker_container:
+        name: my_flask_container
+        image: "cvetkoskimartin/dev_ops:latest"
+        state: started
+        env:
+          MY_PORT: "8080"
+        ports:
+          - "8080:8080"
