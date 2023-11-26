@@ -1,0 +1,10 @@
+---
+- name: Copying source files to worker node
+  hosts: martin
+  become: true
+
+  tasks:
+    - name: Copy files\
+      copy:
+        src: /home/martin/Desktop/flask_app
+        dest: /home/work_vm1/Desktop
