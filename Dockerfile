@@ -8,7 +8,6 @@ COPY index.html /app/templates
 COPY app.py /app
 
 RUN apt-get update
-RUN apt install pip
 RUN pip install flask
 
 ENV PORT=5000
